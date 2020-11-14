@@ -5,12 +5,13 @@ import './MyPosts.scss'
 const MyPosts = (props) => {
 
     let addPost = () => {
-        props.addPost()
-        props.onPostChange("")
+        props.dispatch({type: "ADD-POST"})
+        props.dispatch({type: "ON-POST-CHANGE", newPostText: ""})
     }
 
     let onPostChange = () => {
-        props.onPostChange(newPostElement.current.value)
+        let action = {type: "ON-POST-CHANGE", newPostText: newPostElement.current.value};
+        props.dispatch(action)
     }
 
     let newPostElement = React.createRef()
@@ -24,7 +25,7 @@ const MyPosts = (props) => {
             <button onClick={addPost}>Add post</button>
             <div>
                 {props.posts.map(post => <Post id={post.id} author={post.author} date={post.date} message={post.message}
-                                             likesCount={post.likesCount} addLike={props.addLike}/>)}
+                                             likesCount={post.likesCount} dispatch={props.dispatch}/>)}
             </div>
         </div>
     )

@@ -8,14 +8,10 @@ const Profile = (props) => {
 
     return (
         <div className="profile">
-            {/*<img className="profile__header"
-                 src="https://img.freepik.com/free-photo/empty-sea-beach-background_74190-313.jpg?size=626&ext=jpg"
-                 alt=""/>*/}
             <ProfileInfo/>
             <div className="profile__content">
                 <Sidebar friends={props.friends}/>
-                <MyPosts posts={props.posts} newPostText={props.newPostText} addPost={props.addPost}
-                         addLike={props.addLike} onPostChange={props.onPostChange}/>
+                <MyPosts posts={props.posts} newPostText={props.newPostText} dispatch={props.dispatch}/>
             </div>
 
         </div>

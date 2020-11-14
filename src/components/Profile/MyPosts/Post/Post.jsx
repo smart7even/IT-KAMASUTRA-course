@@ -5,7 +5,7 @@ import avatar from '../../../../assets/avatar/avatar.jpg'
 
 const Post = (props) => {
     let likePost = () => {
-        props.addLike(props.id)
+        props.dispatch({type: "ADD-LIKE", postId: props.id})
     }
 
     return (

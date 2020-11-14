@@ -38,30 +38,30 @@ let store = {
     subscribe(observer) {
         this._callSubscriber = observer
     },
-    addPost() {
-        let newPostId = this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id + 1
-        let newPost = {
-            id: newPostId,
-            message: this._state.profilePage.newPostText,
-            author: "Aleck",
-            date: Date().toString(),
-            likesCount: 0
-        }
-        this._state.profilePage.posts.push(newPost)
-        this._callSubscriber()
-    },
-    addLike(postId) {
-        this._state.profilePage.posts.forEach((post) => {
-            if(post.id === postId){
-                post.likesCount += 1
+    dispatch(action){
+        if(action.type === 'ADD-POST'){
+            let newPostId = this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id + 1
+            let newPost = {
+                id: newPostId,
+                message: this._state.profilePage.newPostText,
+                author: "Aleck",
+                date: Date().toString(),
+                likesCount: 0
             }
-        })
-        this._callSubscriber()
-    },
-    onPostChange(newPostText) {
-        this._state.profilePage.newPostText = newPostText
-        this._callSubscriber()
-    },
+            this._state.profilePage.posts.push(newPost)
+            this._callSubscriber()
+        } else if (action.type === "ADD-LIKE"){
+            this._state.profilePage.posts.forEach((post) => {
+                if(post.id === action.postId){
+                    post.likesCount += 1
+                }
+            })
+            this._callSubscriber()
+        } else  if(action.type === "ON-POST-CHANGE"){
+            this._state.profilePage.newPostText = action.newPostText
+            this._callSubscriber()
+        }
+    }
 }
 
 export default store

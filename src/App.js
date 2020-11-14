@@ -18,8 +18,7 @@ function App(props) {
                     <Route path="/profile" render={() => <Profile posts={props.appState.profilePage.posts}
                                                                   friends={props.appState.profilePage.friends}
                                                                   newPostText={props.appState.profilePage.newPostText}
-                                                                  addPost={props.addPost} addLike={props.addLike}
-                                                                  onPostChange={props.onPostChange}/>}/>
+                                                                  dispatch={props.dispatch}/>}/>
                     <Route path="/news" component={News}/>
                     <Route path="/dialogs" render={() => <Dialogs dialogs={props.appState.messagesPage.dialogs}
                                                                   messages={props.appState.messagesPage.messages}/>}/>
