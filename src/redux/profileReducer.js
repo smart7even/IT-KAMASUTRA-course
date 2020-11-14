@@ -31,7 +31,23 @@ const onPostChange = (state, action) => {
     return state
 }
 
-export const profileReducer = (state, action) => {
+let initialState = {
+    posts: [
+        {id: 1, author: "Aleck", date: "3 Dec 2015", message: "my first post", likesCount: 42},
+        {id: 2, author: "Smart", date: "8 Sep 2048", message: "my second post", likesCount: 322}
+    ],
+    friends: [
+        {id: 1, name: "Andrew"},
+        {id: 2, name: "Aleck"},
+        {id: 3, name: "Norton"},
+        {id: 4, name: "Edward"},
+        {id: 5, name: "Clement"},
+        {id: 6, name: "Simon"},
+    ],
+    newPostText: ""
+}
+
+export const profileReducer = (state = initialState, action) => {
     // eslint-disable-next-line default-case
     switch (action.type){
         case ADD_POST:
