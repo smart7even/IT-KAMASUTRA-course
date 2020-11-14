@@ -12,14 +12,28 @@ const addMessage = (state) => {
 
     return state
 }
-
 const onMessageChange = (state, action) => {
     state.newMessageText = action.newMessageText
 
     return state
 }
 
-export const dialogsReducer = (state, action) => {
+let initialState = {
+    dialogs: [
+        {id: 1, name: "Aleck"},
+        {id: 2, name: "Vadim"},
+        {id: 3, name: "Vova"},
+        {id: 4, name: "Erzhan"},
+        {id: 5, name: "Michael"}
+    ],
+    messages: [
+        {id: 1, message: "my first message"},
+        {id: 2, message: "my second message"}
+    ],
+    newMessageText: ""
+}
+
+export const dialogsReducer = (state = initialState, action) => {
     // eslint-disable-next-line default-case
     switch (action.type){
         case ADD_MESSAGE:
