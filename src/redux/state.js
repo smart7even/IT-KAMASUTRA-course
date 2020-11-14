@@ -64,4 +64,28 @@ let store = {
     }
 }
 
+const ADD_POST = "ADD-POST";
+const ON_POST_CHANGE = "ON-POST-CHANGE";
+const ADD_LIKE = "ADD-LIKE";
+
+export const addPostActionCreator = () => (
+    {
+        type: ADD_POST
+    }
+)
+
+export const onPostChangeActionCreator = (newPostText) => (
+    {
+        type: ON_POST_CHANGE,
+        newPostText: newPostText
+    }
+)
+
+export const addLikeActionCreator = (postId) => (
+    {
+        type: ADD_LIKE,
+        postId: postId
+    }
+)
+
 export default store

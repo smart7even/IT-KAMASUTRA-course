@@ -1,11 +1,12 @@
 import React from 'react'
 import './Post.scss'
+import {addLikeActionCreator} from "../../../../redux/state";
 
 import avatar from '../../../../assets/avatar/avatar.jpg'
 
 const Post = (props) => {
     let likePost = () => {
-        props.dispatch({type: "ADD-LIKE", postId: props.id})
+        props.dispatch(addLikeActionCreator(props.id))
     }
 
     return (

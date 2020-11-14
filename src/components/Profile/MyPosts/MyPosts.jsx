@@ -1,17 +1,18 @@
 import React from 'react'
 import Post from './Post/Post'
 import './MyPosts.scss'
+import {addPostActionCreator, onPostChangeActionCreator} from "../../../redux/state";
 
 const MyPosts = (props) => {
 
     let addPost = () => {
-        props.dispatch({type: "ADD-POST"})
-        props.dispatch({type: "ON-POST-CHANGE", newPostText: ""})
+        props.dispatch(addPostActionCreator())
+        props.dispatch(onPostChangeActionCreator(""))
     }
 
     let onPostChange = () => {
-        let action = {type: "ON-POST-CHANGE", newPostText: newPostElement.current.value};
-        props.dispatch(action)
+        let newText = newPostElement.current.value
+        props.dispatch(onPostChangeActionCreator(newText))
     }
 
     let newPostElement = React.createRef()
@@ -30,5 +31,7 @@ const MyPosts = (props) => {
         </div>
     )
 }
+
+
 
 export default MyPosts
