@@ -1,0 +1,60 @@
+.post {
+    &:first-child {
+        margin-top: 30px;
+    }
+
+    margin-bottom: 40px;
+
+    &__header {
+        display: flex;
+        position: relative;
+        padding-left: 70px;
+        margin-bottom: 20px;
+    }
+
+    &__avatar {
+        display: block;
+        position: absolute;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+
+    &__content {
+        padding-bottom: 20px;
+    }
+
+    &__likes {
+        display: flex;
+        align-items: center;
+
+        &-btn {
+            display: block;
+            width: 40px;
+            height: 40px;
+            border: none;
+            outline: none;
+
+            svg {
+                &:hover {
+                    path {
+                        fill-rule: evenodd;
+                        fill: yellow;
+                    }
+
+                }
+            }
+        }
+
+
+        &-num {
+            padding-left: 10px;
+        }
+
+    }
+
+
+}
