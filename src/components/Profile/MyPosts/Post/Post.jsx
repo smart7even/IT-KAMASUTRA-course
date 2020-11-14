@@ -1,6 +1,7 @@
 import React from 'react'
+import {addLikeActionCreator} from "../../../../redux/profileReducer";
+
 import './Post.scss'
-import {addLikeActionCreator} from "../../../../redux/state";
 
 import avatar from '../../../../assets/avatar/avatar.jpg'
 

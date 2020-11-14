@@ -1,3 +1,6 @@
+import profileReducer from "./profileReducer";
+import dialogsReducer from "./dialogsReducer";
+
 let store = {
     _state: {
         profilePage: {
@@ -39,65 +42,11 @@ let store = {
     subscribe(observer) {
         this._callSubscriber = observer
     },
-    addPost() {
-        const posts = this._state.profilePage.posts;
-        let newPostId = posts[posts.length - 1].id + 1
-        let newPost = {
-            id: newPostId,
-            message: this._state.profilePage.newPostText,
-            author: "Aleck",
-            date: Date().toString(),
-            likesCount: 0
-        }
-        posts.push(newPost)
-        this._callSubscriber()
-    },
-    addLike(postId) {
-        this._state.profilePage.posts.forEach((post) => {
-            if(post.id === postId){
-                post.likesCount += 1
-            }
-        })
-        this._callSubscriber()
-    },
-    onPostChange(newPostText) {
-        this._state.profilePage.newPostText = newPostText
-        this._callSubscriber()
-    },
-    addMessage() {
-        const messages = this._state.messagesPage.messages
-        let newMessageId = messages[messages.length - 1].id + 1
-        let newMessage = {
-            id: newMessageId,
-            message: this._state.messagesPage.newMessageText
-        }
-        messages.push(newMessage)
-        this._callSubscriber()
-    },
-    onMessageChange(newMessageText) {
-        this._state.messagesPage.newMessageText = newMessageText
-        this._callSubscriber()
-    },
+
     dispatch(action){
-        switch (action.type) {
-            case ADD_POST:
-                this.addPost()
-                break
-            case ADD_LIKE:
-                this.addLike(action.postId)
-                break
-            case ON_POST_CHANGE:
-                this.onPostChange(action.newPostText)
-                break
-            case ADD_MESSAGE:
-                this.addMessage()
-                break
-            case ON_MESSAGE_CHANGE:
-                this.onMessageChange(action.newMessageText)
-                break
-            default:
-                break
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.messagesPage = dialogsReducer(this._state.messagesPage, action)
+        this._callSubscriber()
     }
 }
 
