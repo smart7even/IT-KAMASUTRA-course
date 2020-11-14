@@ -101,33 +101,4 @@ let store = {
     }
 }
 
-const ADD_POST = "ADD-POST";
-const ON_POST_CHANGE = "ON-POST-CHANGE";
-const ADD_LIKE = "ADD-LIKE";
-const ADD_MESSAGE = "ADD-MESSAGE"
-const ON_MESSAGE_CHANGE = "ON-MESSAGE-CHANGE"
-
-export const addPostActionCreator = () => ({
-    type: ADD_POST
-})
-
-export const onPostChangeActionCreator = (newPostText) => ({
-    type: ON_POST_CHANGE,
-    newPostText: newPostText
-})
-
-export const addLikeActionCreator = (postId) => ({
-    type: ADD_LIKE,
-    postId: postId
-})
-
-export const addMessageActionCreator = () => ({
-    type: ADD_MESSAGE
-})
-
-export const onMessageChangeActionCreator = (newMessageText) => ({
-    type: ON_MESSAGE_CHANGE,
-    newMessageText: newMessageText
-})
-
 export default store

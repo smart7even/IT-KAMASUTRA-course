@@ -1,7 +1,7 @@
 import React from 'react'
 import Post from './Post/Post'
 import './MyPosts.scss'
-import {addPostActionCreator, onPostChangeActionCreator} from "../../../redux/state";
+import {addPostActionCreator, onPostChangeActionCreator} from "../../../redux/profileReducer";
 
 const MyPosts = (props) => {
 
@@ -31,7 +31,5 @@ const MyPosts = (props) => {
         </div>
     )
 }
-
-
 
 export default MyPosts

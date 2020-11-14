@@ -1,5 +1,4 @@
 import React from 'react'
-import avatar from "../../../assets/avatar/avatar.jpg";
 import SidebarFriends from "./Friends/SidebarFriends";
 
 const Sidebar = (props) => {
