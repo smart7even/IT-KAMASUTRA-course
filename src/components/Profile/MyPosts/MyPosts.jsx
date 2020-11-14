@@ -11,7 +11,6 @@ const MyPosts = (props) => {
 
     let onPostChange = () => {
         props.onPostChange(newPostElement.current.value)
-        console.log(props.newPostText)
     }
 
     let newPostElement = React.createRef()

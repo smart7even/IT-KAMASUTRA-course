@@ -29,11 +29,14 @@ let store = {
             ]
         }
     },
+    _callSubscriber() {
+        console.log("Not subscribed")
+    },
     getState () {
       return this._state
     },
-    rerenderEntireTree() {
-        console.log("Not subscribed")
+    subscribe(observer) {
+        this._callSubscriber = observer
     },
     addPost() {
         let newPostId = this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id + 1
@@ -45,7 +48,7 @@ let store = {
             likesCount: 0
         }
         this._state.profilePage.posts.push(newPost)
-        this.rerenderEntireTree()
+        this._callSubscriber()
     },
     addLike(postId) {
         this._state.profilePage.posts.forEach((post) => {
@@ -53,15 +56,12 @@ let store = {
                 post.likesCount += 1
             }
         })
-        this.rerenderEntireTree()
+        this._callSubscriber()
     },
     onPostChange(newPostText) {
         this._state.profilePage.newPostText = newPostText
-        this.rerenderEntireTree()
+        this._callSubscriber()
     },
-    subscribe(observer) {
-        this.rerenderEntireTree = observer
-    }
 }
 
 export default store
