@@ -26,7 +26,8 @@ let store = {
             messages: [
                 {id: 1, message: "my first message"},
                 {id: 2, message: "my second message"}
-            ]
+            ],
+            newMessageText: ""
         }
     },
     _callSubscriber() {
@@ -38,28 +39,64 @@ let store = {
     subscribe(observer) {
         this._callSubscriber = observer
     },
-    dispatch(action){
-        if(action.type === 'ADD-POST'){
-            let newPostId = this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id + 1
-            let newPost = {
-                id: newPostId,
-                message: this._state.profilePage.newPostText,
-                author: "Aleck",
-                date: Date().toString(),
-                likesCount: 0
+    addPost() {
+        const posts = this._state.profilePage.posts;
+        let newPostId = posts[posts.length - 1].id + 1
+        let newPost = {
+            id: newPostId,
+            message: this._state.profilePage.newPostText,
+            author: "Aleck",
+            date: Date().toString(),
+            likesCount: 0
+        }
+        posts.push(newPost)
+        this._callSubscriber()
+    },
+    addLike(postId) {
+        this._state.profilePage.posts.forEach((post) => {
+            if(post.id === postId){
+                post.likesCount += 1
             }
-            this._state.profilePage.posts.push(newPost)
-            this._callSubscriber()
-        } else if (action.type === "ADD-LIKE"){
-            this._state.profilePage.posts.forEach((post) => {
-                if(post.id === action.postId){
-                    post.likesCount += 1
-                }
-            })
-            this._callSubscriber()
-        } else  if(action.type === "ON-POST-CHANGE"){
-            this._state.profilePage.newPostText = action.newPostText
-            this._callSubscriber()
+        })
+        this._callSubscriber()
+    },
+    onPostChange(newPostText) {
+        this._state.profilePage.newPostText = newPostText
+        this._callSubscriber()
+    },
+    addMessage() {
+        const messages = this._state.messagesPage.messages
+        let newMessageId = messages[messages.length - 1].id + 1
+        let newMessage = {
+            id: newMessageId,
+            message: this._state.messagesPage.newMessageText
+        }
+        messages.push(newMessage)
+        this._callSubscriber()
+    },
+    onMessageChange(newMessageText) {
+        this._state.messagesPage.newMessageText = newMessageText
+        this._callSubscriber()
+    },
+    dispatch(action){
+        switch (action.type) {
+            case ADD_POST:
+                this.addPost()
+                break
+            case ADD_LIKE:
+                this.addLike(action.postId)
+                break
+            case ON_POST_CHANGE:
+                this.onPostChange(action.newPostText)
+                break
+            case ADD_MESSAGE:
+                this.addMessage()
+                break
+            case ON_MESSAGE_CHANGE:
+                this.onMessageChange(action.newMessageText)
+                break
+            default:
+                break
         }
     }
 }
@@ -67,25 +104,30 @@ let store = {
 const ADD_POST = "ADD-POST";
 const ON_POST_CHANGE = "ON-POST-CHANGE";
 const ADD_LIKE = "ADD-LIKE";
+const ADD_MESSAGE = "ADD-MESSAGE"
+const ON_MESSAGE_CHANGE = "ON-MESSAGE-CHANGE"
 
-export const addPostActionCreator = () => (
-    {
-        type: ADD_POST
-    }
-)
+export const addPostActionCreator = () => ({
+    type: ADD_POST
+})
 
-export const onPostChangeActionCreator = (newPostText) => (
-    {
-        type: ON_POST_CHANGE,
-        newPostText: newPostText
-    }
-)
+export const onPostChangeActionCreator = (newPostText) => ({
+    type: ON_POST_CHANGE,
+    newPostText: newPostText
+})
 
-export const addLikeActionCreator = (postId) => (
-    {
-        type: ADD_LIKE,
-        postId: postId
-    }
-)
+export const addLikeActionCreator = (postId) => ({
+    type: ADD_LIKE,
+    postId: postId
+})
+
+export const addMessageActionCreator = () => ({
+    type: ADD_MESSAGE
+})
+
+export const onMessageChangeActionCreator = (newMessageText) => ({
+    type: ON_MESSAGE_CHANGE,
+    newMessageText: newMessageText
+})
 
 export default store
