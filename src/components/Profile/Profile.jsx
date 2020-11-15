@@ -1,8 +1,8 @@
 import React from 'react'
-import MyPosts from './MyPosts/MyPosts'
 import './Profile.scss'
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import Sidebar from "./Sidebar/Sidebar";
+import MyPostContainer from "./MyPosts/MyPostsContainer";
 
 const Profile = (props) => {
 
@@ -11,7 +11,7 @@ const Profile = (props) => {
             <ProfileInfo/>
             <div className="profile__content">
                 <Sidebar friends={props.friends}/>
-                <MyPosts posts={props.posts} newPostText={props.newPostText} dispatch={props.dispatch}/>
+                <MyPostContainer posts={props.posts} newPostText={props.newPostText} dispatch={props.dispatch}/>
             </div>
 
         </div>

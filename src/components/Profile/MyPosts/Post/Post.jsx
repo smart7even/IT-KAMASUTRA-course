@@ -1,5 +1,4 @@
 import React from 'react'
-import {addLikeActionCreator} from "../../../../redux/profileReducer";
 
 import './Post.scss'
 
@@ -7,7 +6,7 @@ import avatar from '../../../../assets/avatar/avatar.jpg'
 
 const Post = (props) => {
     let likePost = () => {
-        props.dispatch(addLikeActionCreator(props.id))
+        props.addLike(props.id)
     }
 
     return (
