@@ -18,6 +18,9 @@ const Navbar = () => {
                 <div className="nav__item">
                     <NavLink to="/music" className="nav__item-text">Music</NavLink>
                 </div>
+                <div className="nav__item">
+                    <NavLink to="/users" className="nav__item-text">Users</NavLink>
+                </div>
             </nav>
         </div>
 

@@ -7,7 +7,7 @@ const SidebarFriends = (props) => {
             <div className="sidebar__friends__header">Friends</div>
 
             <div className="sidebar__friends__items">
-                {props.friends.map(friend => <SidebarFriendsItem name={friend.name}/>)}
+                {props.friends.map(friend => <SidebarFriendsItem key={friend.id} name={friend.name}/>)}
             </div>
         </div>
     )

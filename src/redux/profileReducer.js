@@ -3,7 +3,7 @@ const ON_POST_CHANGE = "ON-POST-CHANGE";
 const ADD_LIKE = "ADD-LIKE";
 
 const addPost = (state) => {
-    const posts = state.posts;
+    const posts = state.posts
     let newPostId = posts[posts.length - 1].id + 1
     let newPost = {
         id: newPostId,
@@ -27,7 +27,6 @@ const addLike = (state, action) => {
 }
 const onPostChange = (state, action) => {
     state.newPostText = action.newPostText
-
     return state
 }
 
@@ -48,31 +47,37 @@ let initialState = {
 }
 
 export const profileReducer = (state = initialState, action) => {
+    let stateCopy = {...state}
     // eslint-disable-next-line default-case
     switch (action.type){
         case ADD_POST:
-            state = addPost(state, action)
+            stateCopy = {...state}
+            stateCopy.posts = [...state.posts]
+            addPost(stateCopy)
             break
         case ADD_LIKE:
-            state = addLike(state, action)
+            stateCopy = {...state}
+            stateCopy.posts = [...state.posts]
+            addLike(stateCopy, action)
             break
         case ON_POST_CHANGE:
-            state = onPostChange(state, action)
+            stateCopy = {...state}
+            onPostChange(stateCopy, action)
             break
     }
-    return state
+    return stateCopy
 }
 
-export const addPostActionCreator = () => ({
+export const addPostAC = () => ({
     type: ADD_POST
 })
 
-export const onPostChangeActionCreator = (newPostText) => ({
+export const onPostChangeAC = (newPostText) => ({
     type: ON_POST_CHANGE,
     newPostText: newPostText
 })
 
-export const addLikeActionCreator = (postId) => ({
+export const addLikeAC = (postId) => ({
     type: ADD_LIKE,
     postId: postId
 })

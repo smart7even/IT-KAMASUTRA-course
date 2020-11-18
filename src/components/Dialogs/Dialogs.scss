@@ -7,7 +7,9 @@
     display: flex;
     background-color: #ffffff;
     margin-bottom: 10px;
-    border-radius: 4%;
+    border-radius: 3px;
+    border: 1px solid #ffffff;
+    box-shadow: 0 0 7px #dce1e6;
   }
 
   &__link{
@@ -18,7 +20,8 @@
   }
 
   &__link.active &__item{
-    background-color: #419ED8;
+    box-shadow: 0 0 7px #7fb6ec;
+    border: 1px solid #69a0cb;
   }
 
   &__avatar{

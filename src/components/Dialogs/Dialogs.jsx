@@ -20,10 +20,10 @@ const Dialogs = (props) => {
     return (
         <div className="dialogs">
             <div className="dialogs__items">
-                {props.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>)}
+                {props.dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>)}
             </div>
             <div className="dialogs__messages">
-                {props.messages.map(m => <Message message={m.message}/>)}
+                {props.messages.map(m => <Message key={m.id} message={m.message}/>)}
                 <div>
                     <textarea onChange={onMessageChange} ref={newMessageElement} value={props.newMessageText}
                               placeholder={"Enter your message"}/>

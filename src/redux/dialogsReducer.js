@@ -22,8 +22,8 @@ let initialState = {
     dialogs: [
         {id: 1, name: "Aleck"},
         {id: 2, name: "Vadim"},
-        {id: 3, name: "Vova"},
-        {id: 4, name: "Erzhan"},
+        {id: 3, name: "Vladimir"},
+        {id: 4, name: "Erina"},
         {id: 5, name: "Michael"}
     ],
     messages: [
@@ -37,20 +37,29 @@ export const dialogsReducer = (state = initialState, action) => {
     // eslint-disable-next-line default-case
     switch (action.type){
         case ADD_MESSAGE:
-            state = addMessage(state)
-            break
+        {
+            let stateCopy = {...state}
+            stateCopy.messages = [...state.messages]
+            stateCopy = addMessage(stateCopy)
+            return stateCopy
+        }
+
         case ON_MESSAGE_CHANGE:
-            state = onMessageChange(state, action)
-            break
+        {
+            let stateCopy = {...state}
+            stateCopy.messages = [...state.messages]
+            stateCopy = onMessageChange(stateCopy, action)
+            return stateCopy
+        }
     }
     return state
 }
 
-export const addMessageActionCreator = () => ({
+export const addMessageAC = () => ({
     type: ADD_MESSAGE
 })
 
-export const onMessageChangeActionCreator = (newMessageText) => ({
+export const onMessageChangeAC = (newMessageText) => ({
     type: ON_MESSAGE_CHANGE,
     newMessageText: newMessageText
 })
