@@ -24,3 +24,7 @@ yarn-error.log*
 
 # old files
 /src/redux/store.js
+
+# project config
+/server/config
+/server/node_modules

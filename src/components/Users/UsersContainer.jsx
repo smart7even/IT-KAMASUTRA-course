@@ -1,5 +1,5 @@
 import Users from "./Users";
-import {followAC} from "../../redux/usersReducer";
+import {followAC, usersAC} from "../../redux/usersReducer";
 
 const {connect} = require("react-redux");
 
@@ -14,6 +14,9 @@ const mapDispatchToProps = (dispatch) => {
     return{
         onFollowClick: (userId) => {
             dispatch(followAC(userId))
+        },
+        setUsers: (users) => {
+            dispatch(usersAC(users))
         }
     }
 }

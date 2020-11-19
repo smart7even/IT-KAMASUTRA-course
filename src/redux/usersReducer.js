@@ -1,13 +1,13 @@
 let initialState = {
-    users: [
+    users: []
+    /* users: [
         {id: 1, name: "Ryzen", followed: false, location: {city: "Kazan", country: "Russia"}},
         {id: 2, name: "Mike", followed: true, location: {city: "New York", country: "USA"}},
         {id: 3, name: "Noize MC", followed: true, location: {city: "Moscow", country: "Russia"}},
         {id: 4, name: "Aleck", followed: false, location: {city: "Moscow", country: "Russia"}},
         {id: 5, name: "Robert", followed: true, location: {city: "Moscow", country: "Russia"}},
         {id: 6, name: "Alex", followed: true, location: {city: "Saint-Petersburg", country: "Russia"}},
-    ]
-
+    ] */
 }
 
 
