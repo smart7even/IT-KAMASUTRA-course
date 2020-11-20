@@ -26,5 +26,5 @@ yarn-error.log*
 /src/redux/store.js
 
 # project config
-/server/config
+/server/config/default.json
 /server/node_modules
